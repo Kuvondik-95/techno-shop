@@ -1,1 +1,3 @@
-console.log("Server.ts is EXECUTED!");
+import dotenv from "dotenv";
+dotenv.config();
+
