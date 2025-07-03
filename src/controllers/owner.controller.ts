@@ -4,10 +4,10 @@ import {Request, Response} from "express";
 import { LoginInput, MemberInput } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.enum";
 
-const restaurantController: T = {};
+const ownerController: T = {};
 const memberService = new MemberService();
 
-restaurantController.goHome = (req: Request, res: Response) => {
+ownerController.goHome = (req: Request, res: Response) => {
   try{
     console.log("goHome");
     res.send("Home Page!");
@@ -16,7 +16,7 @@ restaurantController.goHome = (req: Request, res: Response) => {
   }
 };
 
-restaurantController.getLogin = (req: Request, res: Response) => {
+ownerController.getLogin = (req: Request, res: Response) => {
   try{
     console.log("getLogin");
     res.send("Login Page!");
@@ -25,7 +25,7 @@ restaurantController.getLogin = (req: Request, res: Response) => {
   }
 };
 
-restaurantController.processLogin = async (req: Request, res: Response) => {
+ownerController.processLogin = async (req: Request, res: Response) => {
   try{
     console.log("processLogin");
     const input: LoginInput = req.body;
@@ -39,7 +39,7 @@ restaurantController.processLogin = async (req: Request, res: Response) => {
   }
 };
 
-restaurantController.getSignup = (req: Request, res: Response) => {
+ownerController.getSignup = (req: Request, res: Response) => {
   try{
     console.log("getSignup");
     res.send("Signup Page!");
@@ -48,7 +48,7 @@ restaurantController.getSignup = (req: Request, res: Response) => {
   }
 };
 
-restaurantController.processSignup = async (req: Request, res: Response) => {
+ownerController.processSignup = async (req: Request, res: Response) => {
   try{
     console.log("processSignup");
     const newMember: MemberInput = req.body;
@@ -63,4 +63,4 @@ restaurantController.processSignup = async (req: Request, res: Response) => {
   }
 };
 
-export default restaurantController;
+export default ownerController;
