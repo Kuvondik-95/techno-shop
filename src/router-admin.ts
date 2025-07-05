@@ -5,12 +5,11 @@ import makeUploader from "./libs/utilities/uploader";
 
 const routerAdmin = express.Router();
 
+/** Owner **/
 routerAdmin.get("/", ownerController.goHome);
-
 routerAdmin
     .get("/login", ownerController.getLogin)
     .post("/login", ownerController.processLogin);
-
 routerAdmin
     .get("/signup", ownerController.getSignup)
     .post(
@@ -20,6 +19,7 @@ routerAdmin
 
 routerAdmin.get("/logout", ownerController.logout);
 routerAdmin.get("/check-me", ownerController.checkAuthSession);
+
 
 /** Product **/
 
@@ -38,5 +38,21 @@ routerAdmin.post(
     '/product/:id', 
     ownerController.verifyOwner, //AUTHORIZATION MIDDLEWARE
     productController.updateChosenProduct);
+
+
+
+/** User **/
+routerAdmin.get(
+    "/user/all", 
+    ownerController.verifyOwner, 
+    ownerController.getUsers
+);
+    
+routerAdmin.post(
+    "/user/edit", 
+    ownerController.verifyOwner, 
+    ownerController.updateChosenUser
+);
+
 
 export default routerAdmin;
