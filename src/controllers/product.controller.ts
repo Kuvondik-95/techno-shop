@@ -56,9 +56,9 @@ const productController: T = {};
 productController.getAllProducts = async (req:Request, res:Response) => {
   try{
     console.log("getAllProducts");
-    // const data = await productService.getAllProducts();
-    res.render("products");
-    // res.render("products", { products: data });
+    const data = await productService.getAllProducts();
+    // res.render("products");
+    res.render("products", { products: data });
   }catch(err){
     console.log("Error, getAllProducts:", err);
     if(err instanceof Errors) res.status(err.code).json(err);
@@ -71,21 +71,19 @@ productController.createNewProduct = async (req:AdminRequest, res:Response) => {
     console.log("createNewProduct");
     console.log("req.body:", req.body)
 
-    // if(!req.files?.length) throw new Errors(HttpCode.INTERVAL_SERVER_ERROR, Message.CREATE_FAILED); 
+    if(!req.files?.length) throw new Errors(HttpCode.INTERVAL_SERVER_ERROR, Message.CREATE_FAILED); 
     // console.log("data before:", req.body);
     const data:ProductInput = req.body;
-    // data.productImages = req.files?.map(ele => {
-    //   return ele.path;
-    //   // return ele.path.replace(/\\/g, "/"); it is for Windows OS
-    // });
-
+    data.productImages = req.files?.map(ele => {
+      return ele.path;
+    });
     // console.log("data before:", data);
 
     const result = await productService.createNewProduct(data);
-    console.log("result: ", result);
+    // console.log("result: ", result);
 
-    res.send(result);
-    // res.send(`<script> alert("Successful creation"); window.location.replace('/admin/product/all') </script>`);
+    // res.send(result);
+    res.send(`<script> alert("Successful creation"); window.location.replace('/admin/product/all') </script>`);
 
 
   }catch(err){
