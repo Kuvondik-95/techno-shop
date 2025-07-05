@@ -3,7 +3,7 @@ import { T } from "../libs/types/common";
 import {NextFunction, Request, Response} from "express";
 import { AdminRequest, LoginInput, MemberInput } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.enum";
-import Errors, { Message } from "../libs/Errors";
+import Errors, { HttpCode, Message } from "../libs/Errors";
 
 const ownerController: T = {};
 const memberService = new MemberService();
@@ -38,15 +38,20 @@ ownerController.getSignup = (req: Request, res: Response) => {
 ownerController.processSignup = async (req: AdminRequest, res: Response) => {
   try{
     console.log("processSignup");
-    const newMember: MemberInput = req.body;
+
+    const file = req.file;
+    if(!file) throw new Errors(HttpCode.BAD_REQUEST, Message.SOMETHING_WENT_WRONG);
+
+    const newMember = req.body;
+    newMember.memberImage = file?.path;
+    
     newMember.memberType = MemberType.OWNER;
     const result = await memberService.processSignup(newMember);
-    // TODO: SESSION AUTHENTICATION
 
     req.session.member = result;
     req.session.save(function(){
-      res.send(result);
-      // res.redirect("/admin/product/all");
+      // res.send(result);
+      res.redirect("/admin/product/all");
     });
   }catch(err){
     console.log("Error, processSignup:", err);
@@ -64,8 +69,7 @@ ownerController.processLogin = async (req: AdminRequest, res: Response) => {
     // TODO: SESSION AUTHENTICATION
     req.session.member = result;
     req.session.save(function(){
-      res.send(result);
-      // res.redirect("/admin/product/all");
+      res.redirect("/admin/product/all");
     });
 
   }catch(err){

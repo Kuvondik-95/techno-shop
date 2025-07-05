@@ -13,7 +13,10 @@ routerAdmin
 
 routerAdmin
     .get("/signup", ownerController.getSignup)
-    .post("/signup", ownerController.processSignup);
+    .post(
+        "/signup",
+        makeUploader("members").single("memberImage"),  // UPLOADER MIDDLEWARE
+        ownerController.processSignup);
 
 routerAdmin.get("/logout", ownerController.logout);
 routerAdmin.get("/check-me", ownerController.checkAuthSession);
@@ -28,7 +31,7 @@ routerAdmin.get(
 routerAdmin.post(
     '/product/create', 
     ownerController.verifyOwner,  //AUTHORIZATION MIDDLEWARE
-    // makeUploader("products").array("productImages", 5), // UPLOADER MIDDLEWARE
+    makeUploader("products").array("productImages", 5), // UPLOADER MIDDLEWARE
     productController.createNewProduct);
 
 routerAdmin.post(
