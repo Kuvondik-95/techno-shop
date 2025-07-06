@@ -4,3 +4,17 @@
   margin-top: 20px;
   margin-bottom: 20px;
 }
+
+.title-frame{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.create-btn{
+  padding: 8px;
+  background-color: blue;
+  color: white !important;
+  cursor: pointer;
+}

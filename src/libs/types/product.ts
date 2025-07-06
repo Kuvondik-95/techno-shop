@@ -33,7 +33,7 @@ export interface ProductInquiry{
 }
 
 export interface ProductInput{
-  productStatus?: ProductStatus;
+  productStatus?: ProductStatus; // -
   productCollection: ProductCollection;
   productName: string;
   productRam: number;
@@ -49,7 +49,7 @@ export interface ProductInput{
   productBrand?: ProductBrand;
   productDesc?: string;
   productImages?: string[];
-  productViews?: number;
+  productViews?: number;    // 16
 }
 
 export interface ProductUpdateInput{

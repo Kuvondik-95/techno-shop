@@ -12,6 +12,11 @@ body{
 .table{
   background-color: white;
 }
+
+.table td{
+  padding: 4px;
+  vertical-align: middle;
+}
 .navbar-div{
   display: flex;
   flex-direction: row;

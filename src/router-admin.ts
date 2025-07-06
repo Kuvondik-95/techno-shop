@@ -28,6 +28,11 @@ routerAdmin.get(
     ownerController.verifyOwner, //AUTHORIZATION MIDDLEWARE
     productController.getAllProducts);
 
+routerAdmin.get(
+    '/product/new', 
+    ownerController.verifyOwner, //AUTHORIZATION MIDDLEWARE
+    productController.getProductPage);
+
 routerAdmin.post(
     '/product/create', 
     ownerController.verifyOwner,  //AUTHORIZATION MIDDLEWARE
@@ -38,6 +43,9 @@ routerAdmin.post(
     '/product/:id', 
     ownerController.verifyOwner, //AUTHORIZATION MIDDLEWARE
     productController.updateChosenProduct);
+
+
+
 
 
 
