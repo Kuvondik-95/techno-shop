@@ -10,13 +10,17 @@
           <h5>Signup process!</h5>
         </div>
         <div class="signup-inputs">
-           <form method="post" action="http://localhost:4003/admin/signup">
+           <form 
+              onsubmit="return validateSignupForm()" 
+              method="post" 
+              action="http://localhost:4003/admin/signup"
+            >
               <div class="form-group">
                 <label for="name">Name</label>
                 <input 
                   type="text" 
                   name="memberNick"
-                  class="form-control" 
+                  class="form-control member-nick" 
                   id="name" 
                   placeholder="Enter your name"
                   required
@@ -29,7 +33,7 @@
                 <input 
                   type="text"
                   name="memberPhone" 
-                  class="form-control" 
+                  class="form-control member-phone" 
                   id="phone" 
                   placeholder="Enter your phone number"
                   required
@@ -41,7 +45,7 @@
                 <input 
                   type="password" 
                   name="memberPassword"
-                  class="form-control" 
+                  class="form-control member-password" 
                   id="password" 
                   placeholder="Password"
                   required
@@ -49,11 +53,11 @@
               </div>
 
               <div class="form-group">
-                <label for="password2">Repeat password</label>
+                <label for="confirm-password">Repeat password</label>
                 <input 
                   type="password" 
-                  class="form-control" 
-                  id="password2" 
+                  class="form-control confirm-password" 
+                  id="confirm-password" 
                   placeholder="Password"
                   required
                   >
@@ -70,6 +74,8 @@
       </div>
     </div>
   </div>
+
+  <script type="text/javascript" src="/js/signup.js"></script>
 </body>
 
 <%- include('includes/footer') %>
