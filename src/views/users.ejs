@@ -49,7 +49,27 @@
               <th scope="row" style="text-align: center"><%=++index%></th>
               <td><%=ele.memberNick%></td>
               <td style="text-align: center"><%=ele.memberPhone%></td>
-              <td><%=ele.memberStatus%></td>
+              <td>
+                <select class="form-control" id="<%=ele._id%>">
+                  <option 
+                    value="ACTIVE"
+                    <%=ele.memberStatus === "ACTIVE" ? "selected" : ""%> > 
+                    ACTIVE
+                  </option>
+                  
+                  <option 
+                    value="BLOCK"
+                    <%=ele.memberStatus === "BLOCK" ? "selected" : ""%> >
+                      BLOCK
+                  </option>
+                  
+                  <option 
+                    value="DELETE"
+                    <%=ele.memberStatus === "DELETE" ? "selected" : ""%> >
+                    DELETE
+                  </option>
+                </select>
+              </td>
             </tr>
             <% }) %>
           </tbody>
