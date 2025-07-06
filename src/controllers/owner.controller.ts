@@ -39,11 +39,11 @@ ownerController.processSignup = async (req: AdminRequest, res: Response) => {
   try{
     console.log("processSignup");
 
-    const file = req.file;
-    if(!file) throw new Errors(HttpCode.BAD_REQUEST, Message.SOMETHING_WENT_WRONG);
+    // const file = req.file;
+    // if(!file) throw new Errors(HttpCode.BAD_REQUEST, Message.SOMETHING_WENT_WRONG);
 
     const newMember = req.body;
-    newMember.memberImage = file?.path;
+    // newMember.memberImage = file?.path;
     
     newMember.memberType = MemberType.OWNER;
     const result = await memberService.processSignup(newMember);
@@ -63,6 +63,7 @@ ownerController.processSignup = async (req: AdminRequest, res: Response) => {
 ownerController.processLogin = async (req: AdminRequest, res: Response) => {
   try{
     console.log("processLogin");
+    console.log("req.body", req.body);
     const input: LoginInput = req.body;
     const result = await memberService.processLogin(input);
 
@@ -75,7 +76,7 @@ ownerController.processLogin = async (req: AdminRequest, res: Response) => {
   }catch(err){
     console.log("Error, processLogin:", err);
     const message = err instanceof Errors ? err.message : Message.SOMETHING_WENT_WRONG;
-    res.send(`<script> alert("${message}"); window.location.replace('/admin/login') </script>`);
+    res.send(`<script> alert("${message}"); window.location.replace('/admin') </script>`);
   }
 };
 
@@ -136,7 +137,7 @@ ownerController.verifyOwner = (req:AdminRequest, res:Response, next: NextFunctio
       next();
     }else{
       const message = Message.NOT_AUTHENTICATED;
-      res.send(`<script> alert("${message}"); window.location.replace("/admin/login") </script>`);
+      res.send(`<script> alert("${message}"); window.location.replace("/admin") </script>`);
     }
 }
 
