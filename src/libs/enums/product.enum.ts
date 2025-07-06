@@ -19,6 +19,7 @@ export enum ProductBrand {
   NOKIA = "NOKIA",
   MOTOROLA = "MOTOROLA",
   VIVO = "VIVO",
+  LG = "LG",
   OTHER = "OTHER"
 }
 

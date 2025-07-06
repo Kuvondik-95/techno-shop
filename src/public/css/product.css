@@ -1,0 +1,15 @@
+.page-title{
+  text-align: center;
+  font-weight: 500;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+.img-frame{
+  margin-top: 30px;
+}
+
+.img-frame .upload-img-box img{
+  width: 200px;
+  cursor: pointer;
+}

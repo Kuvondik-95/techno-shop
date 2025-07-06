@@ -1,5 +1,5 @@
 <%- include('includes/header') %>
-<link rel="stylesheet" type="text/css" href="/css/products.css" />
+<link rel="stylesheet" type="text/css" href="/css/product.css" />
 
 <body>
   <div class="home-container">
@@ -34,14 +34,32 @@
   
       <div class="container">
         <h2 class="page-title">Create new product</h2>
-        <form method="POST" action="http://localhost:4003/admin/product/create">
-          <div class="row">
+        <form method="POST" action="/admin/product/create">
+          <div class="row ">
             
             <div class="col-md-6">
               <div class="form-group row">
                 <label for="productName" class="col-md-3 col-form-label" style="text-align: right;">Product Name:</label>
                 <div class="col-md-9">
                   <input name="productName" type="text" class="form-control" id="productName">
+                </div>
+              </div>
+            </div><!-- .col -->
+
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label for="productBrand" class="col-md-3 col-form-label" style="text-align: right;">Brand:</label>
+                <div class="col-md-9">
+                  <select name="productBrand" id="" class="form-control">
+                    <option value="SAMSUNG" selected >SAMSUNG</option>
+                    <option value="APPLE">APPLE</option>
+                    <option value="HUAWEI">HUAWEI</option>
+                    <option value="NOKIA">NOKIA</option>
+                    <option value="MOTOROLA">MOTOROLA</option>
+                    <option value="VIVO">VIVO</option>
+                    <option value="LG">LG</option>
+                    <option value="OTHER">OTHER</option>
+                  </select>
                 </div>
               </div>
             </div><!-- .col -->
@@ -50,23 +68,202 @@
               <div class="form-group row">
                 <label for="productCollection" class="col-md-3 col-form-label" style="text-align: right;">Category:</label>
                 <div class="col-md-9">
-                  <input name="productName" type="text" class="form-control" id="productName">
+                  <select name="productCollection" id="" class="form-control">
+                    <option value="SMARTPHONE" selected >SMARTPHONE</option>
+                    <option value="FOLDABLE">FOLDABLE</option>
+                    <option value="BASIC">BASIC</option>
+                    <option value="RUGGED">RUGGED</option>
+                    <option value="OTHER">OTHER</option>
+                  </select>
+                </div>
+              </div>
+            </div><!-- .col -->
+            
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label for="ProductOperationSystem" class="col-md-3 col-form-label" style="text-align: right;">Op. System:</label>
+                <div class="col-md-9">
+                  <select name="ProductOperationSystem" id="" class="form-control">
+                    <option value="ANDROID" selected >ANDROID</option>
+                    <option value="IOS">IOS</option>
+                    <option value="OTHER">OTHER</option>
+                  </select>
                 </div>
               </div>
             </div><!-- .col -->
 
             <div class="col-md-6">
               <div class="form-group row">
-                <label for="productName" class="col-md-3 col-form-label" style="text-align: right;">Product Name:</label>
+                <label for="productRam" class="col-md-3 col-form-label" style="text-align: right;">RAM:</label>
                 <div class="col-md-9">
-                  <input name="productName" type="text" class="form-control" id="productName">
+                  <input name="productRam" type="number" class="form-control" id="productRam">
                 </div>
               </div>
             </div><!-- .col -->
-            
-            
-          
+
+             <div class="col-md-6">
+              <div class="form-group row">
+                <label for="productMemory" class="col-md-3 col-form-label" style="text-align: right;">Memory:</label>
+                <div class="col-md-9">
+                  <input name="productMemory" type="number" class="form-control" id="productMemory">
+                </div>
+              </div>
+            </div><!-- .col -->
+
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label for="productPrice" class="col-md-3 col-form-label" style="text-align: right;">Price:</label>
+                <div class="col-md-9">
+                  <input name="productPrice" type="number" class="form-control" id="productPrice">
+                </div>
+              </div>
+            </div><!-- .col -->
+
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label for="productLeftCount" class="col-md-3 col-form-label" style="text-align: right;">Left counts:</label>
+                <div class="col-md-9">
+                  <input name="productLeftCount" type="number" class="form-control" id="productLeftCount">
+                </div>
+              </div>
+            </div><!-- .col -->
+
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label for="productCpuSpeed" class="col-md-3 col-form-label" style="text-align: right;">CPU speed:</label>
+                <div class="col-md-9">
+                  <input name="productCpuSpeed" type="number" class="form-control" id="productCpuSpeed">
+                </div>
+              </div>
+            </div><!-- .col -->
+
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label for="productResolution" class="col-md-3 col-form-label" style="text-align: right;">Resolution:</label>
+                <div class="col-md-9">
+                  <select name="productResolution" id="" class="form-control">
+                    <option value="1280 x 720" selected >HD</option>
+                    <option value="1920 x 1080">FULL_HD</option>
+                    <option value="2560 x 1440">QUAD_HD</option>
+                    <option value="3840 x 2160">ULTRA_HD</option>
+                    <option value="OTHER">OTHER</option>
+                  </select>
+                </div>
+              </div>
+            </div><!-- .col -->
+
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label for="productScreenSize" class="col-md-3 col-form-label" style="text-align: right;">Screen size:</label>
+                <div class="col-md-9">
+                  <input name="productScreenSize" type="number" class="form-control" id="productScreenSize">
+                </div>
+              </div>
+            </div><!-- .col -->
+
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label for="productBattery" class="col-md-3 col-form-label" style="text-align: right;">Battery:</label>
+                <div class="col-md-9">
+                  <input name="productBattery" type="number" class="form-control" id="productBattery">
+                </div>
+              </div>
+            </div><!-- .col -->
+
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label for="productCamera" class="col-md-3 col-form-label" style="text-align: right;">Camera:</label>
+                <div class="col-md-9">
+                  <input name="productCamera" type="number" class="form-control" id="productCamera">
+                </div>
+              </div>
+            </div><!-- .col -->
+
+            <div class="col-md-6">
+              <div class="form-group row">
+                <label for="productDesc" class="col-md-3 col-form-label" style="text-align: right;">Description:</label>
+                <div class="col-md-9">
+                  <textarea name="productDesc" type="text" class="form-control" id="productDesc" rows="4" cols="50"></textarea>
+                </div>
+              </div>
+            </div><!-- .col -->
           </div><!-- .row -->
+
+          
+          <!-- IMAGES SECTION -->
+          <div class="row img-frame g-1">
+            <div class="col-md-1 mr-5">
+            </div><!-- .col -->
+
+            <div class="col-md-2 mr-1">
+              <div class="upload-img-box">
+                <img src="/img/upload2.png" class="1" id="image-section-1" />
+                <input
+                  type="file"
+                  id="file"
+                  name="productImages"
+                  class="image-one"
+                  hidden
+                />
+              </div>
+            </div><!-- .col -->
+            
+            <div class="col-md-2 mr-1">
+              <div class="upload-img-box">
+                <img src="/img/upload2.png" class="2" id="image-section-2" />
+                <input
+                  type="file"
+                  id="file"
+                  name="productImages"
+                  class="image-two"
+                  hidden
+                />
+              </div>
+            </div><!-- .col -->
+            
+            <div class="col-md-2 mr-1">
+              <div class="upload-img-box">
+                <img src="/img/upload2.png" class="3" id="image-section-3" />
+                <input
+                  type="file"
+                  id="file"
+                  name="productImages"
+                  class="image-three"
+                  hidden
+                />
+              </div>
+            </div><!-- .col -->
+            
+            <div class="col-md-2 mr-1">
+              <div class="upload-img-box">
+                <img src="/img/upload2.png" class="4" id="image-section-4" />
+                <input
+                  type="file"
+                  id="file"
+                  name="productImages"
+                  class="image-four"
+                  hidden
+                />
+              </div>
+            </div><!-- .col -->
+            <div class="col-md-2 mr-1">
+              <div class="upload-img-box">
+                <img src="/img/upload2.png" class="5" id="image-section-5" />
+                <input
+                  type="file"
+                  id="file"
+                  name="productImages"
+                  class="image-five"
+                  hidden
+                />
+              </div>
+            </div><!-- .col -->
+
+          </div><!-- .row -->
+
+          <div class="d-flex flex-row justify-content-end mt-3">
+            <button type="submit" class="btn btn-primary">Create</button>
+          </div>
           
           
         </form>

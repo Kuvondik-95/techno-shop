@@ -3,3 +3,5 @@ dist
 
 .env
 project-standards.txt
+
+.DS_Store
