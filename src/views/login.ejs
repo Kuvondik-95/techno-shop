@@ -1,8 +1,36 @@
 <%- include('includes/header') %>
-
+<link rel="stylesheet" type="text/css" href="/css/login.css" />
 <body>
-  <div class="my-div">
-    This is login
+  <div class="login-container">
+    <div class="container d-flex justify-content-center align-items-center">
+      <div class="login-frame">
+        <div class="login-title">
+          <h1>Welcome to TechnoShop Admin!</h1>
+          <h5> Please, login your account!</h5>
+        </div>
+        <div class="login-inputs">
+           <form>
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter your name">
+                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+              </div>
+
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password">
+              </div>
+
+              <a
+                class="btn btn-success form-control mt-4" 
+                href="http://localhost:4003/admin/home">
+                Login
+              </a>
+              <p class="mt-2 mb-0" >Don't have an account? <a href="http://localhost:4003/admin/signup">Sign Up</a></p>
+           </form>
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 

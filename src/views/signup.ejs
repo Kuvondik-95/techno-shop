@@ -1,8 +1,43 @@
 <%- include('includes/header') %>
+<link rel="stylesheet" type="text/css" href="/css/signup.css" />
 
 <body>
-  <div class="my-div">
-    This is signup
+  <div class="signup-container">
+    <div class="container d-flex justify-content-center align-items-center">
+      <div class="signup-frame">
+        <div class="signup-title">
+          <h1>Welcome to TechnoShop Admin!</h1>
+          <h5>Signup process!</h5>
+        </div>
+        <div class="signup-inputs">
+           <form>
+              <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" aria-describedby="emailHelp" placeholder="Enter your name">
+                <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+              </div>
+
+              <div class="form-group">
+                <label for="phone">Phone</label>
+                <input type="text" class="form-control" id="phone" placeholder="Enter your phone number">
+              </div>
+
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password">
+              </div>
+
+              <div class="form-group">
+                <label for="password">Repeat password</label>
+                <input type="password" class="form-control" id="password" placeholder="Password">
+              </div>
+
+              <!-- <button type="submit" class="btn btn-success form-control mt-4" >Signup</button> -->
+              <a href="http://localhost:4003/admin/home" class="btn btn-success form-control mt-4">Signup</a>
+           </form>
+        </div>
+      </div>
+    </div>
   </div>
 </body>
 

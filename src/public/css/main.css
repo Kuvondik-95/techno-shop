@@ -1,11 +1,25 @@
-body{
-  background-color: aquamarine;
+html, body{
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  width: 100%;
 }
 
-.my-div{
-  width: 200px;
-  height: 200px;
-  padding: 20px;
-  background-color: blue;
-  color: white;
+.navbar-div{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.nav-item{
+  margin-right: 24px;
+  font-size: 18px;
+}
+/* .navbar-nav{
+  width: 100%;
+  margin: auto;
+} */
+
+.nav-item-logout{
+  text-align: end;
 }

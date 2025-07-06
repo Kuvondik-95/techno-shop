@@ -1,13 +1,82 @@
 <%- include('includes/header') %>
+<link rel="stylesheet" type="text/css" href="/css/products.css" />
 
 <body>
-  <div>This is products page</div>
-  <div><%=member.memberNick%></div>
+  <div class="home-container">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+        <div class="navbar-div collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item ">
+              <a class="nav-link" href="http://localhost:4003/admin/home">Home</a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="#">Products</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="http://localhost:4003/admin/user/all">Users</a>
+            </li>
+            <li class="nav-item nav-item-logout">
+              <a class="nav-link btn btn-sm btn-outline-success" href="#">Logout</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
-  <% products.map( (value, key) => { %>
-    <p><%=value.productName%> = <%=value.productBrand%></p>
-  <% }) %>
+
+  
+      <div class="container">
+        <h2 class="page-title">Products</h2>
+        <table class="table table-striped table-bordered">
+          <thead>
+            <tr style="text-align: center">
+              <th scope="col" style="width: 10%;">№</th>
+              <th scope="col" style="width: 35%;">Name</th>
+              <th scope="col" style="width: 20%;">Brand</th>
+              <th scope="col" style="width: 10%;">Price</th>
+              <th scope="col" style="width: 10%;">Quantity</th>
+              <th scope="col" style="width: 15%;">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% products.map((ele, index) => { %>
+            <tr>
+              <th style="text-align: center"><%=++index%></th>
+              <td><%=ele.productName%></td>
+              <td><%=ele.productBrand%></td>
+              <td style="text-align: right;"><%=ele.productPrice%>$</td>
+              <td style="text-align: center;"><%=ele.productLeftCount%></td>
+              <td>
+                <select class="form-control" name="productStatus" id="<%=ele._id%>">
+                  <option 
+                    value="<%=ele.productStatus === "PROCESS" ? "PROCESS" : " "%>"> 
+                    PROCESS
+                  </option>
+                  
+                  <option 
+                    value="<%=ele.productStatus === "PAUSE" ? "PAUSE" : " "%>">
+                      PAUSE
+                  </option>
+                  
+                  <option 
+                    value="<%=ele.productStatus === "DELETE" ? "DELETE" : " "%>">
+                    DELETE
+                  </option>
+                </select>
+              </td>
+            </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+      
+  </div>
+
+  
 
 </body>
 
 <%- include('includes/footer') %>
+
+<!-- <% products.map( (value, key) => { %>
+    <p><%=value.productName%> = <%=value.productBrand%></p>
+<% }) %> -->
