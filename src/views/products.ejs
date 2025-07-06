@@ -46,19 +46,22 @@
               <td style="text-align: right;"><%=ele.productPrice%>$</td>
               <td style="text-align: center;"><%=ele.productLeftCount%></td>
               <td>
-                <select class="form-control" name="productStatus" id="<%=ele._id%>">
+                <select class="form-control" id="<%=ele._id%>">
                   <option 
-                    value="<%=ele.productStatus === "PROCESS" ? "PROCESS" : " "%>"> 
+                    value="PROCESS"
+                    <%=ele.productStatus === "PROCESS" ? "selected" : ""%> > 
                     PROCESS
                   </option>
                   
                   <option 
-                    value="<%=ele.productStatus === "PAUSE" ? "PAUSE" : " "%>">
+                    value="PAUSE"
+                    <%=ele.productStatus === "PAUSE" ? "selected" : ""%> >
                       PAUSE
                   </option>
                   
                   <option 
-                    value="<%=ele.productStatus === "DELETE" ? "DELETE" : " "%>">
+                    value="DELETE"
+                    <%=ele.productStatus === "DELETE" ? "selected" : ""%> >
                     DELETE
                   </option>
                 </select>
