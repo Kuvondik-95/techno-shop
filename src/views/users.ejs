@@ -50,7 +50,10 @@
               <td><%=ele.memberNick%></td>
               <td style="text-align: center"><%=ele.memberPhone%></td>
               <td>
-                <select class="form-control" id="<%=ele._id%>">
+                <select 
+                  class="form-control member-status" 
+                  id="<%=ele._id%>"
+                >
                   <option 
                     value="ACTIVE"
                     <%=ele.memberStatus === "ACTIVE" ? "selected" : ""%> > 
