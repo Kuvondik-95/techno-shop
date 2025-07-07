@@ -15,27 +15,34 @@
             <li class="nav-item">
               <a class="nav-link" href="http://localhost:4003/admin/user/all">Users</a>
             </li>
-            <li 
-              class="nav-item nav-item-logout"
-              onclick="return confirm('Do you want to logout?')"
-            >
-              <a 
-                class="nav-link btn btn-sm btn-outline-success" 
-                href="http://localhost:4003/admin/logout"
-                >
-                Logout
-              </a>
-            </li>
           </ul>
+
+          <div 
+            class="logout-div"
+            onclick="return confirm('Do you want to logout?')"
+          >
+            <a 
+              class="nav-link btn btn-sm btn-outline-success" 
+              href="http://localhost:4003/admin/logout"
+              >
+              Logout
+            </a>
+          </div> 
+
         </div>
+        
+         
+
+
       </nav>
+      
 
 
   
       <div class="container">
         <div class="title-frame">
           <h2 class="page-title">Products</h2>
-          <a class="create-btn" href="http://localhost:4003/admin/product/new">Create</a>
+          <a class="btn btn-primary  create-btn" href="http://localhost:4003/admin/product/new">Create</a>
         </div>
         <table class="table table-striped table-bordered">
           <thead>
