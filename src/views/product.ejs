@@ -34,14 +34,26 @@
   
       <div class="container">
         <h2 class="page-title">Create new product</h2>
-        <form method="POST" action="/admin/product/create">
+        <form onsubmit="return validateForm()" method="POST" action="/admin/product/create">
           <div class="row ">
             
+            <input 
+              name="productStatus" 
+              type="text" 
+              value="PROCESS" 
+              class="product-status" 
+              hidden
+              >
+
             <div class="col-md-6">
               <div class="form-group row">
                 <label for="productName" class="col-md-3 col-form-label" style="text-align: right;">Product Name:</label>
                 <div class="col-md-9">
-                  <input name="productName" type="text" class="form-control" id="productName">
+                  <input 
+                    name="productName" 
+                    type="text" 
+                    class="form-control product-name" 
+                    id="productName">
                 </div>
               </div>
             </div><!-- .col -->
@@ -50,7 +62,7 @@
               <div class="form-group row">
                 <label for="productBrand" class="col-md-3 col-form-label" style="text-align: right;">Brand:</label>
                 <div class="col-md-9">
-                  <select name="productBrand" id="" class="form-control">
+                  <select name="productBrand" id="" class="form-control product-brand">
                     <option value="SAMSUNG" selected >SAMSUNG</option>
                     <option value="APPLE">APPLE</option>
                     <option value="HUAWEI">HUAWEI</option>
@@ -66,9 +78,9 @@
 
             <div class="col-md-6">
               <div class="form-group row">
-                <label for="productCollection" class="col-md-3 col-form-label" style="text-align: right;">Category:</label>
+                <label for="productCollection" class="col-md-3 col-form-label " style="text-align: right;">Category:</label>
                 <div class="col-md-9">
-                  <select name="productCollection" id="" class="form-control">
+                  <select name="productCollection" id="" class="form-control product-collection">
                     <option value="SMARTPHONE" selected >SMARTPHONE</option>
                     <option value="FOLDABLE">FOLDABLE</option>
                     <option value="BASIC">BASIC</option>
@@ -81,9 +93,9 @@
             
             <div class="col-md-6">
               <div class="form-group row">
-                <label for="ProductOperationSystem" class="col-md-3 col-form-label" style="text-align: right;">Op. System:</label>
+                <label for="productOperationSystem" class="col-md-3 col-form-label " style="text-align: right;">Op. System:</label>
                 <div class="col-md-9">
-                  <select name="ProductOperationSystem" id="" class="form-control">
+                  <select name="productOperationSystem" id="" class="form-control product-op-sys">
                     <option value="ANDROID" selected >ANDROID</option>
                     <option value="IOS">IOS</option>
                     <option value="OTHER">OTHER</option>
@@ -96,7 +108,12 @@
               <div class="form-group row">
                 <label for="productRam" class="col-md-3 col-form-label" style="text-align: right;">RAM:</label>
                 <div class="col-md-9">
-                  <input name="productRam" type="number" class="form-control" id="productRam">
+                  <input 
+                    name="productRam" 
+                    type="number" 
+                    class="form-control product-ram" 
+                    id="productRam"
+                    >
                 </div>
               </div>
             </div><!-- .col -->
@@ -105,16 +122,26 @@
               <div class="form-group row">
                 <label for="productMemory" class="col-md-3 col-form-label" style="text-align: right;">Memory:</label>
                 <div class="col-md-9">
-                  <input name="productMemory" type="number" class="form-control" id="productMemory">
+                  <input 
+                    name="productMemory" 
+                    type="number" 
+                    class="form-control product-memory" 
+                    id="productMemory"
+                  >
                 </div>
               </div>
             </div><!-- .col -->
 
             <div class="col-md-6">
               <div class="form-group row">
-                <label for="productPrice" class="col-md-3 col-form-label" style="text-align: right;">Price:</label>
+                <label for="productPrice" class="col-md-3 col-form-label " style="text-align: right;">Price:</label>
                 <div class="col-md-9">
-                  <input name="productPrice" type="number" class="form-control" id="productPrice">
+                  <input 
+                    name="productPrice" 
+                    type="number" 
+                    class="form-control product-price" 
+                    id="productPrice"
+                  >
                 </div>
               </div>
             </div><!-- .col -->
@@ -123,7 +150,12 @@
               <div class="form-group row">
                 <label for="productLeftCount" class="col-md-3 col-form-label" style="text-align: right;">Left counts:</label>
                 <div class="col-md-9">
-                  <input name="productLeftCount" type="number" class="form-control" id="productLeftCount">
+                  <input 
+                    name="productLeftCount" 
+                    type="number" 
+                    class="form-control product-left-count" 
+                    id="productLeftCount"
+                  >
                 </div>
               </div>
             </div><!-- .col -->
@@ -132,7 +164,12 @@
               <div class="form-group row">
                 <label for="productCpuSpeed" class="col-md-3 col-form-label" style="text-align: right;">CPU speed:</label>
                 <div class="col-md-9">
-                  <input name="productCpuSpeed" type="number" class="form-control" id="productCpuSpeed">
+                  <input 
+                    name="productCpuSpeed" 
+                    type="number" 
+                    class="form-control product-cpu-speed" 
+                    id="productCpuSpeed"
+                  >
                 </div>
               </div>
             </div><!-- .col -->
@@ -141,7 +178,7 @@
               <div class="form-group row">
                 <label for="productResolution" class="col-md-3 col-form-label" style="text-align: right;">Resolution:</label>
                 <div class="col-md-9">
-                  <select name="productResolution" id="" class="form-control">
+                  <select name="productResolution" id="" class="form-control product-resolution">
                     <option value="1280 x 720" selected >HD</option>
                     <option value="1920 x 1080">FULL_HD</option>
                     <option value="2560 x 1440">QUAD_HD</option>
@@ -156,7 +193,12 @@
               <div class="form-group row">
                 <label for="productScreenSize" class="col-md-3 col-form-label" style="text-align: right;">Screen size:</label>
                 <div class="col-md-9">
-                  <input name="productScreenSize" type="number" class="form-control" id="productScreenSize">
+                  <input 
+                    name="productScreenSize" 
+                    type="number" 
+                    class="form-control product-screen-size" 
+                    id="productScreenSize"
+                    >
                 </div>
               </div>
             </div><!-- .col -->
@@ -165,7 +207,11 @@
               <div class="form-group row">
                 <label for="productBattery" class="col-md-3 col-form-label" style="text-align: right;">Battery:</label>
                 <div class="col-md-9">
-                  <input name="productBattery" type="number" class="form-control" id="productBattery">
+                  <input 
+                    name="productBattery" 
+                    type="number" 
+                    class="form-control product-battery" 
+                    id="productBattery">
                 </div>
               </div>
             </div><!-- .col -->
@@ -174,7 +220,12 @@
               <div class="form-group row">
                 <label for="productCamera" class="col-md-3 col-form-label" style="text-align: right;">Camera:</label>
                 <div class="col-md-9">
-                  <input name="productCamera" type="number" class="form-control" id="productCamera">
+                  <input 
+                    name="productCamera" 
+                    type="number" 
+                    class="form-control product-camera" 
+                    id="productCamera"
+                  >
                 </div>
               </div>
             </div><!-- .col -->
@@ -183,7 +234,15 @@
               <div class="form-group row">
                 <label for="productDesc" class="col-md-3 col-form-label" style="text-align: right;">Description:</label>
                 <div class="col-md-9">
-                  <textarea name="productDesc" type="text" class="form-control" id="productDesc" rows="4" cols="50"></textarea>
+                  <textarea 
+                    name="productDesc" 
+                    type="text" 
+                    class="form-control product-desc" 
+                    id="productDesc" 
+                    rows="4" 
+                    cols="50"
+                  >
+                  </textarea>
                 </div>
               </div>
             </div><!-- .col -->
@@ -191,77 +250,81 @@
 
           
           <!-- IMAGES SECTION -->
-          <div class="row img-frame g-1">
-            <div class="col-md-1 mr-5">
-            </div><!-- .col -->
-
-            <div class="col-md-2 mr-1">
+          <div class="row img-frame justify-content-around">
+            
+            <div class="col-md-2 mr-1 img-column">
               <div class="upload-img-box">
-                <img src="/img/upload2.png" class="1" id="image-section-1" />
+                <img src="/img/upload2.png" class="1" onclick="uploadPhotoInput('image-one')" id="image-section-1" />
                 <input
                   type="file"
                   id="file"
                   name="productImages"
                   class="image-one"
                   hidden
+                  onchange="previewFileHandler(this, 1)"
                 />
               </div>
             </div><!-- .col -->
             
-            <div class="col-md-2 mr-1">
+            <div class="col-md-2 mr-1 img-column">
               <div class="upload-img-box">
-                <img src="/img/upload2.png" class="2" id="image-section-2" />
+                <img src="/img/upload2.png" class="2" onclick="uploadPhotoInput('image-two')" id="image-section-2" />
                 <input
                   type="file"
                   id="file"
                   name="productImages"
                   class="image-two"
                   hidden
+                  onchange="previewFileHandler(this, 2)"
                 />
               </div>
             </div><!-- .col -->
             
-            <div class="col-md-2 mr-1">
+            <div class="col-md-2 mr-1 img-column">
               <div class="upload-img-box">
-                <img src="/img/upload2.png" class="3" id="image-section-3" />
+                <img src="/img/upload2.png" class="3" onclick="uploadPhotoInput('image-three')" id="image-section-3" />
                 <input
                   type="file"
                   id="file"
                   name="productImages"
                   class="image-three"
                   hidden
+                  onchange="previewFileHandler(this, 3)"
                 />
               </div>
             </div><!-- .col -->
             
-            <div class="col-md-2 mr-1">
+            <div class="col-md-2 mr-1 img-column">
               <div class="upload-img-box">
-                <img src="/img/upload2.png" class="4" id="image-section-4" />
+                <img src="/img/upload2.png" class="4" onclick="uploadPhotoInput('image-four')" id="image-section-4" />
                 <input
                   type="file"
                   id="file"
                   name="productImages"
                   class="image-four"
                   hidden
+                  onchange="previewFileHandler(this, 4)"
                 />
               </div>
             </div><!-- .col -->
-            <div class="col-md-2 mr-1">
+            <div class="col-md-2 mr-1 img-column">
               <div class="upload-img-box">
-                <img src="/img/upload2.png" class="5" id="image-section-5" />
+                <img src="/img/upload2.png" class="5" onclick="uploadPhotoInput('image-five')" id="image-section-5" />
                 <input
                   type="file"
                   id="file"
                   name="productImages"
                   class="image-five"
                   hidden
+                  onchange="previewFileHandler(this, 5)"
                 />
               </div>
             </div><!-- .col -->
 
           </div><!-- .row -->
 
-          <div class="d-flex flex-row justify-content-end mt-3">
+          <div class="d-flex flex-row justify-content-between mt-3">
+            <a href="/admin/product/all" class="btn btn-danger ml-5">Cancel</a>
             <button type="submit" class="btn btn-primary">Create</button>
           </div>
           

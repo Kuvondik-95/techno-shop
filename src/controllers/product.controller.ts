@@ -81,18 +81,19 @@ productController.getProductPage = async (req:Request, res:Response) => {
 productController.createNewProduct = async (req:AdminRequest, res:Response) => {
   try{
     console.log("createNewProduct");
-    console.log("req.body:", req.body)
+    console.log("req.body:", req.body);
+    console.log("!req.files?.length:", req.files);
 
     // if(!req.files?.length) throw new Errors(HttpCode.INTERVAL_SERVER_ERROR, Message.CREATE_FAILED); 
-    // console.log("data before:", req.body);
+    console.log("data before:", req.body);
     const data:ProductInput = req.body;
-    data.productImages = req.files?.map(ele => {
-      return ele.path;
-    });
-    // console.log("data before:", data);
+    // data.productImages = req.files?.map(ele => {
+    //   return ele.path;
+    // });
+    console.log("data before:", data);
 
     const result = await productService.createNewProduct(data);
-    // console.log("result: ", result);
+    console.log("result: ", result);
 
     // res.send(result);
     res.send(`<script> alert("Successful creation"); window.location.replace('/admin/product/all') </script>`);
