@@ -4,9 +4,12 @@ import {Request, Response} from "express";
 import { MemberInput } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.enum";
 import MemberService from "../models/member.service";
-import Errors from "../libs/Errors";
+import Errors, { HttpCode } from "../libs/Errors";
+import AuthService from "../models/Auth.service";
+import { AUTH_TIMER } from "../libs/config";
 
 const memberService = new MemberService();
+const authService = new AuthService();
 const memberController: T = {};
 
 memberController.signup = async (req: Request, res: Response) => {
@@ -15,8 +18,14 @@ memberController.signup = async (req: Request, res: Response) => {
     const input: MemberInput = req.body;
     const result: Member = await memberService.signup(input);
     // TODO: TOKENS AUTHENTICATION
+    const token = await authService.createToken(result);
+    
+    res.cookie("accessToken", token, {
+      maxAge: AUTH_TIMER * 3600 * 1000,
+      httpOnly: false
+    });
 
-    res.json({ member: result });
+    res.status(HttpCode.CREATED).json({ member: result, accessToken: token});
   }catch(err){
     console.log("Error, signup:", err);
     if(err instanceof Errors) res.status(err.code).json(err)
@@ -30,8 +39,14 @@ memberController.login = async (req: Request, res: Response) => {
     const input: LoginInput = req.body;
     const result: Member = await memberService.login(input);
     // TODO: TOKENS AUTHENTICATION
+    const token = await authService.createToken(result);
+
+    res.cookie("accessToken", token, {
+      maxAge: AUTH_TIMER * 3600 * 1000,
+      httpOnly: false
+    });
     
-    res.json({ member: result });
+    res.status(HttpCode.OK).json({ member: result, accessToken: token});
   }catch(err){
     console.log("Error, login:", err);
     if(err instanceof Errors) res.status(err.code).json(err)
