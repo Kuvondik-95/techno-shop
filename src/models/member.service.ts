@@ -76,6 +76,21 @@ class MemberService{
     return result;
   }
 
+  public async getTopUsers(): Promise<Member[]> {
+    const result = this.memberModel
+    .find(
+      { memberStatus: MemberStatus.ACTIVE,
+        memberPoint: {$gte: 1},
+      })
+    .sort({memberPoint: -1})
+    .limit(4)
+    .exec()
+
+    if(!result) throw new Errors(HttpCode.NOT_FOUND, Message.NO_DATA_FOUND)
+
+    return result;
+  }
+
 
 
 
