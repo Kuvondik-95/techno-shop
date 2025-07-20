@@ -4,6 +4,8 @@ import makeUploader from "./libs/utilities/uploader";
 const router = express.Router();
 
 /** Member **/
+
+router.get("/member/getOwner", memberController.getOwner);
 router.post("/member/signup", memberController.signup);
 router.post("/member/login", memberController.login);
 router.post("/member/logout", memberController.verifyAuth, memberController.logout);
