@@ -86,6 +86,21 @@ class MemberService{
     return result;
   }
 
+  public async addUserPoint(member: Member, point: number): Promise<Member> {
+    const memberId = shapeIntoMongooseObjectId(member._id);
+
+    return await this.memberModel
+    .findOneAndUpdate(
+      {
+        _id: memberId, 
+        memberType: MemberType.USER, 
+        memberStatus: MemberStatus.ACTIVE
+      },
+      { $inc: {memberPoint: point} },
+      { new: true }
+    ).exec();
+  }
+
   public async getTopUsers(): Promise<Member[]> {
     const result = this.memberModel
     .find(

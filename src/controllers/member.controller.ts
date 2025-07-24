@@ -3,10 +3,11 @@ import { T } from "../libs/types/common";
 import {NextFunction, Request, Response} from "express";
 import { MemberInput } from "../libs/types/member";
 import { MemberType } from "../libs/enums/member.enum";
-import MemberService from "../models/member.service";
+
 import Errors, { HttpCode, Message } from "../libs/Errors";
 import AuthService from "../models/Auth.service";
 import { AUTH_TIMER } from "../libs/config";
+import MemberService from "../models/member.service";
 
 const memberService = new MemberService();
 const authService = new AuthService();
