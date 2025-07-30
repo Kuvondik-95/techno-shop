@@ -4,7 +4,7 @@ import Errors, { HttpCode, Message } from "../libs/Errors";
 import ProductService from "../models/Product.service";
 import { AdminRequest, ExtendedRequest } from "../libs/types/member";
 import { Product, ProductInput, ProductInquiry } from "../libs/types/product";
-import { ProductCollection } from "../libs/enums/product.enum";
+import { ProductBrand, ProductCollection } from "../libs/enums/product.enum";
 
 const productService = new ProductService();
 const productController: T = {};
@@ -14,7 +14,7 @@ productController.getProducts = async (req: Request, res: Response) => {
   try{
     console.log("getProducts");
 
-    const {order, page, limit, productCollection, search} = req.query;
+    const {order, page, limit, productCollection, productBrand, search} = req.query;
     const inquiry: ProductInquiry = {
       order: String(order),
       page: Number(page),
@@ -22,6 +22,8 @@ productController.getProducts = async (req: Request, res: Response) => {
     }
     if(productCollection) 
       inquiry.productCollection = productCollection as ProductCollection;
+    if(productBrand) 
+      inquiry.productBrand = productBrand as ProductBrand;
     if(search) inquiry.search = String(search);
 
     const result = await productService.getProducts(inquiry);
@@ -38,9 +40,10 @@ productController.getProduct = async (req: ExtendedRequest, res: Response) => {
   try{
     console.log("getProduct");
     const { id } = req.params;
+    console.log("id:", id);
     const memberId = req.member?._id ?? null,
       result = await productService.getProduct(memberId, id);
-
+    console.log("result:", result);
     res.status(HttpCode.OK).json(result);
   }catch(err){
     console.log("Error, getProduct:", err);
@@ -69,7 +72,15 @@ productController.getAllProducts = async (req:Request, res:Response) => {
 productController.getProductPage = async (req:Request, res:Response) => {
   try{
     console.log("getProductPage");
-    res.render("product");
+    const { id } = req.params;
+    let result = {};
+    
+    if(id){
+      result = await productService.getProduct(null, id);
+      res.render("product", {product: result});
+    }else{
+      res.render("product", {product: {productImages: []}});  
+    }
   }catch(err){
     console.log("Error, getProductPage:", err);
     if(err instanceof Errors) res.status(err.code).json(err);
@@ -82,14 +93,14 @@ productController.createNewProduct = async (req:AdminRequest, res:Response) => {
   try{
     console.log("createNewProduct");
     console.log("req.body:", req.body);
-    console.log("!req.files?.length:", req.files);
+    console.log("!req.files?:", req.files);
 
-    // if(!req.files?.length) throw new Errors(HttpCode.INTERVAL_SERVER_ERROR, Message.CREATE_FAILED); 
+    if(!req.files?.length) throw new Errors(HttpCode.INTERVAL_SERVER_ERROR, Message.CREATE_FAILED); 
     console.log("data before:", req.body);
     const data:ProductInput = req.body;
-    // data.productImages = req.files?.map(ele => {
-    //   return ele.path;
-    // });
+    data.productImages = req.files?.map(ele => {
+      return ele.path;
+    });
     console.log("data before:", data);
 
     const result = await productService.createNewProduct(data);
@@ -120,5 +131,21 @@ productController.updateChosenProduct = async (req:Request, res:Response) => {
     else res.status(Errors.standard.code).json(Errors.standard);
   }
 }
+
+productController.removeProduct = async (req:Request, res:Response) => {
+  try{
+    console.log("removeProduct");
+    const id = req.params.id;
+    
+    await productService.removeProduct(id);
+
+    res.status(HttpCode.OK).json({result: "REMOVED!"});
+  }catch(err){
+    console.log("Error, updateChosenProduct:", err);
+    if(err instanceof Errors) res.status(err.code).json(err);
+    else res.status(Errors.standard.code).json(Errors.standard);
+  }
+}
+
 
 export default productController;

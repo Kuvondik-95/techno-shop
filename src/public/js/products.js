@@ -26,3 +26,10 @@ $(function() {
   });
 
 })
+
+async function removeItem(id){
+  if(confirm("Do you want to delete this item from database?")){
+    await axios.get(`/admin/product/remove/${id}`);
+    window.location.reload();
+  }
+}

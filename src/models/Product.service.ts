@@ -30,6 +30,8 @@ class ProductService{
 
     if(inquiry.productCollection) 
       match.productCollection = inquiry.productCollection;
+    if(inquiry.productBrand) 
+      match.productBrand = inquiry.productBrand;
     if(inquiry.search) {
       match.productName = { $regex: new RegExp(inquiry.search, "i") };
     }
@@ -37,7 +39,6 @@ class ProductService{
 
     const sort: T = 
       inquiry.order === "productPrice" ? { [inquiry.order]: 1 } : { [inquiry.order]: -1 };
-
     const result = await this.productModel
       .aggregate([
         { $match: match },
@@ -120,6 +121,17 @@ class ProductService{
     .exec();
 
     if(!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
+
+    return result;
+  }
+
+  public async removeProduct(id: string): Promise<Product>{
+    id = shapeIntoMongooseObjectId(id);
+    const result = await this.productModel
+    .findByIdAndDelete({_id:id})
+    .exec();
+
+    if(!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.DELETE_FAILED);
 
     return result;
   }

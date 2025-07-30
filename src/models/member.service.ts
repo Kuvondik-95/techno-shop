@@ -1,16 +1,21 @@
 import MemberModel from "../schema/Member.model";
+import ProductModel from "../schema/Product.model";
 import { LoginInput, Member, MemberInput, MemberUpdateInput } from "../libs/types/member";
 import Errors, { Message } from "../libs/Errors";
 import { HttpCode } from "../libs/Errors";
 import { MemberStatus, MemberType } from "../libs/enums/member.enum";
 import * as bcrypt from "bcryptjs";
 import { shapeIntoMongooseObjectId } from "../libs/config";
+import { ProdStats, Statistics, UserStats } from "../libs/types/common";
+import { ProductStatus } from "../libs/enums/product.enum";
 
 class MemberService{
   private readonly memberModel;
+  private readonly productModel;
   
   constructor(){
     this.memberModel = MemberModel;
+    this.productModel = ProductModel;
   }
 
   /** SPA **/
@@ -178,6 +183,44 @@ class MemberService{
     if(!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
     
     return result;
+  }
+
+  public async goHome(): Promise<Statistics>{
+    const match = {memberType: MemberType.USER};
+    const result = await this.memberModel.aggregate([
+      {$match: match},
+      {$facet:{
+        active: [{$match: {memberStatus:MemberStatus.ACTIVE}}, {$count: "active"}],
+        block: [{$match: {memberStatus:MemberStatus.BLOCK}}, {$count: "block"}],
+        delete: [{$match: {memberStatus:MemberStatus.DELETE}}, {$count: "delete"}]
+      }}
+    ]).exec()
+    const userStats: UserStats = {
+      active: result[0]?.active[0]?.active ?? 0,
+      block: result[0]?.block[0]?.block ?? 0,
+      delete: result[0]?.delete[0]?.delete ?? 0,
+    }
+    
+
+    const result2 = await this.productModel.aggregate([
+      {$facet:{
+        process: [{$match: {productStatus: ProductStatus.PROCESS}}, {$count: "process"}],
+        pause: [{$match: {productStatus: ProductStatus.PAUSE}}, {$count: "pause"}],
+        delete: [{$match: {productStatus: ProductStatus.DELETE}}, {$count: "delete"}]
+      }}
+    ]).exec()
+    const prodStats: ProdStats = {
+      process: result2[0]?.process[0]?.process ?? 0,
+      pause: result2[0]?.pause[0]?.pause ?? 0,
+      delete: result2[0]?.delete[0]?.delete ?? 0,
+    }
+    
+    const statistics:Statistics = {
+      products: prodStats,
+      users: userStats
+    }
+    
+    return statistics;
   }
 
 }

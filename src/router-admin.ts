@@ -33,6 +33,16 @@ routerAdmin.get(
     ownerController.verifyOwner, //AUTHORIZATION MIDDLEWARE
     productController.getProductPage);
 
+routerAdmin.get(
+    '/product/new/:id', 
+    ownerController.verifyOwner, //AUTHORIZATION MIDDLEWARE
+    productController.getProductPage);
+
+routerAdmin.get(
+    '/product/remove/:id', 
+    ownerController.verifyOwner, //AUTHORIZATION MIDDLEWARE
+    productController.removeProduct);
+
 routerAdmin.post(
     '/product/create', 
     ownerController.verifyOwner,  //AUTHORIZATION MIDDLEWARE

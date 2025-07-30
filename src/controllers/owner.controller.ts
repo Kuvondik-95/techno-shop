@@ -8,10 +8,13 @@ import Errors, { HttpCode, Message } from "../libs/Errors";
 const ownerController: T = {};
 const memberService = new MemberService();
 
-ownerController.goHome = (req: Request, res: Response) => {
+ownerController.goHome = async (req: Request, res: Response) => {
   try{
     console.log("goHome");
-    res.render("home");
+
+    const result = await memberService.goHome();
+    console.log("result", result);
+    res.render("home", {statistics: result});
   }catch(err){
     console.log("Error, goHome:", err);
   }

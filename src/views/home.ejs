@@ -16,22 +16,158 @@
             <li class="nav-item">
               <a class="nav-link" href="http://localhost:4003/admin/user/all">Users</a>
             </li>
-            <li 
-              class="nav-item nav-item-logout"
-              onclick="return confirm('Do you want to logout?')"
-              >
-              <a 
-                class="nav-link btn btn-sm btn-outline-success" 
-                href="http://localhost:4003/admin/logout"
-                >
-                Logout
-              </a>
-            </li>
           </ul>
+          <div 
+            class="logout-div"
+            onclick="return confirm('Do you want to logout?')"
+          >
+            <a 
+              class="nav-link btn btn-sm btn-outline-success" 
+              href="http://localhost:4003/admin/logout"
+              >
+              Logout
+            </a>
+          </div> 
         </div>
       </nav>
+
+      <div class="container">
+        <div class="title-frame">
+          <h2 class="page-title">Statistics</h2>
+        </div>
+        <!-- PRODUCTS statistics -->
+        <div class="products-box">
+          <div class="products-st-left">
+            <div class="quantity-box">
+              <h5>
+                <%=statistics.products.process
+                    +statistics.products.pause
+                    +statistics.products.delete %> 
+                Products
+              </h5>
+            </div>
+          </div>
+
+          <div class="products-st-right">
+            <div class="title">
+              This is all products information! 
+            </div>
+            <div id="main-1" style="width: 100%; height:230px;"></div>
+          </div>
+        </div>
+
+        <!-- USERS statistics -->
+        <div class="users-box">
+          <div class="users-st-left">
+            <div class="quantity-box">
+              <h5><%=statistics.users.active
+                    +statistics.users.block
+                    +statistics.users.delete %>  Users</h5>
+            </div>
+          </div>
+
+          <div class="users-st-right">
+            <div class="title">This is all users information!</div>
+            <div id="main-2" style="width: 100%; height:230px;"></div>
+          </div>
+        </div>
+      </div><!-- .container -->
   </div>
   
+  <!-- PRODUCTS -->
+  <div id="process" style="display: none;"><%=statistics.products.process%></div>
+  <div id="pause" style="display: none;"><%=statistics.products.pause%></div>
+  <div id="delete" style="display: none;"><%=statistics.products.delete%></div>
+
+  <!-- USERS -->
+  <div id="active" style="display: none;"><%=statistics.users.active%></div>
+  <div id="block" style="display: none;"><%=statistics.users.block%></div>
+  <div id="user-delete" style="display: none;"><%=statistics.users.delete%></div>
+
+  <script>
+    
+    const obj = {
+      process: Number(document.getElementById('process').innerHTML),
+      pause: Number(document.getElementById('pause').innerHTML),
+      delete: Number(document.getElementById('delete').innerHTML)
+    };
+
+    /* PRODUCTS CHART */
+    var myChart1 = echarts.init(document.getElementById('main-1'));
+
+    const option = {
+      series: [
+        {
+          name: 'Products',
+          type: 'pie',
+          color: [
+            '#14e822ff',
+            '#759aa0',
+            '#dd6b66',
+          ],
+          data: [
+            {
+              value: obj.process,
+              name: 'PROCESS'
+            },
+            {
+              value: obj.pause,
+              name: 'PAUSE'
+            },
+            {
+              value: obj.delete,
+              name: 'DELETE'
+            }
+          ]
+        }
+      ]
+    };
+    myChart1.setOption(option);
+
+
+
+    const objUser = {
+      active: Number(document.getElementById('active').innerHTML),
+      block: Number(document.getElementById('block').innerHTML),
+      delete: Number(document.getElementById('user-delete').innerHTML)
+    };
+
+    /* USERS CHART */
+    var myChart2 = echarts.init(document.getElementById('main-2'));
+
+    const option2 = {
+      series: [
+        {
+          type: 'pie',
+          name: 'Users',
+          color: [
+            '#143be8ff',
+            '#759aa0',
+            '#dd6b66',
+          ],
+          data: [
+            {
+              value: objUser.active,
+              name: 'ACTIVE'
+            },
+            {
+              value: objUser.block,
+              name: 'BLOCK'
+            },
+            {
+              value: objUser.delete,
+              name: 'DELETE'
+            }
+          ]
+        }
+      ]
+    };
+    myChart2.setOption(option2);
+
+
+
+
+  </script>
   <script type="text/javascript" src="/js/home.js"></script>
 </body>
 

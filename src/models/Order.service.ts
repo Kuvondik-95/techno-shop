@@ -107,7 +107,7 @@ class OrderService{
     const memberId = shapeIntoMongooseObjectId(member._id);
     const orderId = shapeIntoMongooseObjectId(input.orderId),
           orderStatus = input.orderStatus;
-
+    console.log("Passed here! 1");
     const result = this.orderModel
     .findOneAndUpdate(
       { memberId: memberId, _id: orderId }, 
@@ -115,8 +115,10 @@ class OrderService{
       { new: true }
     ).exec()
     
+    console.log("Passed here! 2");
     if(!result) throw new Errors(HttpCode.NOT_MODIFIED, Message.UPDATE_FAILED);
-
+    
+    console.log("Passed here! 3");
     // orderStatus Pause => Process + 1
     if( orderStatus === OrderStatus.PROCESS){
       await this.memberService.addUserPoint(member, 1);

@@ -15,26 +15,33 @@
             <li class="nav-item">
               <a class="nav-link" href="http://localhost:4003/admin/user/all">Users</a>
             </li>
-            <li 
-              class="nav-item nav-item-logout"
-              onclick="return confirm('Do you want to logout?')"
-            >
-              <a 
-                class="nav-link btn btn-sm btn-outline-success" 
-                href="http://localhost:4003/admin/logout"
-                >
-                Logout
-              </a>
-            </li>
           </ul>
+          <div 
+            class="logout-div"
+            onclick="return confirm('Do you want to logout?')"
+          >
+            <a 
+              class="nav-link btn btn-sm btn-outline-success" 
+              href="http://localhost:4003/admin/logout"
+            >
+              Logout
+            </a>
+          </div> 
         </div>
       </nav>
 
 
   
       <div class="container">
-        <h2 class="page-title">Create new product</h2>
-        <form onsubmit="return validateForm()" method="POST" action="/admin/product/create">
+        <h2 class="page-title">
+          <%=product.productName ? "Update product" :  "Create new product"%>
+          
+        </h2>
+        <form 
+          onsubmit="return validateForm()" 
+          method="POST" 
+          action="<%=product.productName ? "/admin/product/update" :  "/admin/product/create" %>"
+        >
           <div class="row ">
             
             <input 
@@ -53,7 +60,9 @@
                     name="productName" 
                     type="text" 
                     class="form-control product-name" 
-                    id="productName">
+                    id="productName"
+                    value="<%=product.productName%>"
+                  >  
                 </div>
               </div>
             </div><!-- .col -->
@@ -62,15 +71,66 @@
               <div class="form-group row">
                 <label for="productBrand" class="col-md-3 col-form-label" style="text-align: right;">Brand:</label>
                 <div class="col-md-9">
-                  <select name="productBrand" id="" class="form-control product-brand">
-                    <option value="SAMSUNG" selected >SAMSUNG</option>
-                    <option value="APPLE">APPLE</option>
-                    <option value="HUAWEI">HUAWEI</option>
-                    <option value="NOKIA">NOKIA</option>
-                    <option value="MOTOROLA">MOTOROLA</option>
-                    <option value="VIVO">VIVO</option>
-                    <option value="LG">LG</option>
-                    <option value="OTHER">OTHER</option>
+                  <select 
+                    class="form-control product-brand"
+                    name="productBrand" 
+                    id="<%=product.productBrand%>" 
+                  >
+                    <option 
+                      value="SAMSUNG" 
+                      <%=product.productBrand === "SAMSUNG" ? "selected" : ""%>  
+                    >
+                      SAMSUNG
+                    </option>
+                    
+                    <option 
+                      value="APPLE"
+                      <%=product.productBrand === "APPLE" ? "selected" : ""%>  
+                    >
+                      APPLE
+                    </option>
+                    
+                    <option 
+                      value="HUAWEI"
+                      <%=product.productBrand === "HUAWEI" ? "selected" : ""%>
+                    >
+                      HUAWEI
+                    </option>
+                    
+                    <option 
+                      value="NOKIA"
+                      <%=product.productBrand === "NOKIA" ? "selected" : ""%>
+                    >
+                      NOKIA
+                    </option>
+                    
+                    <option 
+                      value="MOTOROLA"
+                      <%=product.productBrand === "MOTOROLA" ? "selected" : ""%>
+                    >
+                      MOTOROLA
+                    </option>
+                    
+                    <option 
+                      value="VIVO"
+                      <%=product.productBrand === "VIVO" ? "selected" : ""%>
+                    >
+                      VIVO
+                    </option>
+                    
+                    <option 
+                      value="LG"
+                      <%=product.productBrand === "LG" ? "selected" : ""%>
+                    >
+                      LG
+                    </option>
+                    
+                    <option 
+                      value="OTHER"
+                      <%=product.productBrand === "OTHER" ? "selected" : ""%>
+                    >
+                      OTHER
+                    </option>
                   </select>
                 </div>
               </div>
@@ -80,12 +140,45 @@
               <div class="form-group row">
                 <label for="productCollection" class="col-md-3 col-form-label " style="text-align: right;">Category:</label>
                 <div class="col-md-9">
-                  <select name="productCollection" id="" class="form-control product-collection">
-                    <option value="SMARTPHONE" selected >SMARTPHONE</option>
-                    <option value="FOLDABLE">FOLDABLE</option>
-                    <option value="BASIC">BASIC</option>
-                    <option value="RUGGED">RUGGED</option>
-                    <option value="OTHER">OTHER</option>
+                  <select 
+                    class="form-control product-collection"
+                    name="productCollection" 
+                    id="<%=product.productCollection%>" 
+                  >
+                    <option 
+                      value="SMARTPHONE"  
+                      <%=product.productCollection === "SMARTPHONE" ? "selected" : ""%>
+                    >
+                      SMARTPHONE
+                    </option>
+                    
+                    <option 
+                      value="FOLDABLE"
+                      <%=product.productCollection === "FOLDABLE" ? "selected" : ""%>
+                    >
+                      FOLDABLE
+                    </option>
+                    
+                    <option 
+                      value="BASIC"
+                      <%=product.productCollection === "BASIC" ? "selected" : ""%>
+                    >
+                      BASIC
+                    </option>
+                    
+                    <option 
+                      value="RUGGED"
+                      <%=product.productCollection === "RUGGED" ? "selected" : ""%>
+                    >
+                      RUGGED
+                    </option>
+                    
+                    <option 
+                      value="OTHER"
+                      <%=product.productCollection === "OTHER" ? "selected" : ""%>
+                    >
+                      OTHER
+                    </option>
                   </select>
                 </div>
               </div>
@@ -95,10 +188,31 @@
               <div class="form-group row">
                 <label for="productOperationSystem" class="col-md-3 col-form-label " style="text-align: right;">Op. System:</label>
                 <div class="col-md-9">
-                  <select name="productOperationSystem" id="" class="form-control product-op-sys">
-                    <option value="ANDROID" selected >ANDROID</option>
-                    <option value="IOS">IOS</option>
-                    <option value="OTHER">OTHER</option>
+                  <select 
+                    class="form-control product-op-sys"
+                    name="productOpSystem" 
+                    id="<%=product.productOpSystem%>"
+                  >
+                    <option 
+                      value="ANDROID" 
+                      <%=product.productOpSystem === "ANDROID" ? "selected" : ""%> 
+                    >
+                      ANDROID
+                    </option>
+                    
+                    <option 
+                      value="IOS"
+                      <%=product.productOpSystem === "IOS" ? "selected" : ""%>
+                    >
+                      IOS
+                    </option>
+                    
+                    <option 
+                      value="OTHER"
+                      <%=product.productOpSystem === "OTHER" ? "selected" : ""%>
+                    >
+                      OTHER
+                    </option>
                   </select>
                 </div>
               </div>
@@ -113,6 +227,7 @@
                     type="number" 
                     class="form-control product-ram" 
                     id="productRam"
+                    value="<%=product.productRam%>"
                     >
                 </div>
               </div>
@@ -127,6 +242,7 @@
                     type="number" 
                     class="form-control product-memory" 
                     id="productMemory"
+                    value="<%=product.productMemory%>"
                   >
                 </div>
               </div>
@@ -141,6 +257,7 @@
                     type="number" 
                     class="form-control product-price" 
                     id="productPrice"
+                    value="<%=product.productPrice%>"
                   >
                 </div>
               </div>
@@ -155,6 +272,7 @@
                     type="number" 
                     class="form-control product-left-count" 
                     id="productLeftCount"
+                    value="<%=product.productLeftCount%>"
                   >
                 </div>
               </div>
@@ -167,8 +285,10 @@
                   <input 
                     name="productCpuSpeed" 
                     type="number" 
+                    step="0.01"
                     class="form-control product-cpu-speed" 
                     id="productCpuSpeed"
+                    value="<%=product.productCpuSpeed%>"
                   >
                 </div>
               </div>
@@ -195,9 +315,11 @@
                 <div class="col-md-9">
                   <input 
                     name="productScreenSize" 
-                    type="number" 
+                    type="number"
+                    step="0.01" 
                     class="form-control product-screen-size" 
                     id="productScreenSize"
+                    value="<%=product.productScreenSize%>"
                     >
                 </div>
               </div>
@@ -211,7 +333,9 @@
                     name="productBattery" 
                     type="number" 
                     class="form-control product-battery" 
-                    id="productBattery">
+                    id="productBattery"
+                    value="<%=product.productBattery%>"
+                    >
                 </div>
               </div>
             </div><!-- .col -->
@@ -225,6 +349,7 @@
                     type="number" 
                     class="form-control product-camera" 
                     id="productCamera"
+                    value="<%=product.productCamera%>"
                   >
                 </div>
               </div>
@@ -232,7 +357,13 @@
 
             <div class="col-md-6">
               <div class="form-group row">
-                <label for="productDesc" class="col-md-3 col-form-label" style="text-align: right;">Description:</label>
+                <label 
+                  for="productDesc" 
+                  class="col-md-3 col-form-label"
+                  style="text-align: right;"
+                >
+                Description:
+                </label>
                 <div class="col-md-9">
                   <textarea 
                     name="productDesc" 
@@ -241,6 +372,7 @@
                     id="productDesc" 
                     rows="4" 
                     cols="50"
+                    value="<%=product.productDesc%>"
                   >
                   </textarea>
                 </div>
@@ -254,13 +386,19 @@
             
             <div class="col-md-2 mr-1 img-column">
               <div class="upload-img-box">
-                <img src="/img/upload2.png" class="1" onclick="uploadPhotoInput('image-one')" id="image-section-1" />
+                <img 
+                  src="<%=product?.productImages[0] ? "http://localhost:4003/"+product.productImages[0] : "/img/upload2.png" %>" 
+                  class="1" 
+                  onclick="uploadPhotoInput('image-one')" 
+                  id="image-section-1" 
+                />
                 <input
                   type="file"
                   id="file"
                   name="productImages"
                   class="image-one"
                   hidden
+                  required
                   onchange="previewFileHandler(this, 1)"
                 />
               </div>
@@ -268,7 +406,12 @@
             
             <div class="col-md-2 mr-1 img-column">
               <div class="upload-img-box">
-                <img src="/img/upload2.png" class="2" onclick="uploadPhotoInput('image-two')" id="image-section-2" />
+                <img 
+                  src="<%=product?.productImages[1] ? "http://localhost:4003/"+product.productImages[1] : "/img/upload2.png" %>" 
+                  class="2" 
+                  onclick="uploadPhotoInput('image-two')" 
+                  id="image-section-2" 
+                />
                 <input
                   type="file"
                   id="file"
@@ -282,7 +425,12 @@
             
             <div class="col-md-2 mr-1 img-column">
               <div class="upload-img-box">
-                <img src="/img/upload2.png" class="3" onclick="uploadPhotoInput('image-three')" id="image-section-3" />
+                <img 
+                  src="<%=product?.productImages[2] ? "http://localhost:4003/"+product.productImages[2] : "/img/upload2.png" %>" 
+                  class="3" 
+                  onclick="uploadPhotoInput('image-three')" 
+                  id="image-section-3" 
+                />
                 <input
                   type="file"
                   id="file"
@@ -296,7 +444,12 @@
             
             <div class="col-md-2 mr-1 img-column">
               <div class="upload-img-box">
-                <img src="/img/upload2.png" class="4" onclick="uploadPhotoInput('image-four')" id="image-section-4" />
+                <img 
+                  src="<%=product?.productImages[3] ? "http://localhost:4003/"+product.productImages[3] : "/img/upload2.png" %>" 
+                  class="4" 
+                  onclick="uploadPhotoInput('image-four')" 
+                  id="image-section-4" 
+                />
                 <input
                   type="file"
                   id="file"
@@ -309,7 +462,12 @@
             </div><!-- .col -->
             <div class="col-md-2 mr-1 img-column">
               <div class="upload-img-box">
-                <img src="/img/upload2.png" class="5" onclick="uploadPhotoInput('image-five')" id="image-section-5" />
+                <img 
+                  src="<%=product?.productImages[4] ? "http://localhost:4003/"+product.productImages[4] : "/img/upload2.png" %>" 
+                  class="5" 
+                  onclick="uploadPhotoInput('image-five')" 
+                  id="image-section-5" 
+                />
                 <input
                   type="file"
                   id="file"
@@ -325,7 +483,9 @@
 
           <div class="d-flex flex-row justify-content-between mt-3">
             <a href="/admin/product/all" class="btn btn-danger ml-5">Cancel</a>
-            <button type="submit" class="btn btn-primary">Create</button>
+            <button type="submit" class="btn btn-primary">
+              <%=product?.productName ? "Save" : "Create" %>
+            </button>
           </div>
           
           

@@ -2,3 +2,119 @@
   width: 100%;
   height: 100%;
 }
+
+.home-container .container .title-frame .page-title{
+  font-weight: 500;
+  text-align: center;
+  color: #000000;
+  margin-top: 20px;
+}
+
+/* PRODUCTS statistics */
+.home-container .container .products-box{
+  width: 70%;
+  height: 270px;
+  margin: 0 auto;
+  margin-top: 20px;
+  border: 1px solid rgb(187, 187, 187);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.home-container .container .products-box .products-st-left{
+  display: inline-block;
+  width: 40%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home-container .container .products-box .products-st-left .quantity-box{
+  width: 180px;
+  height: 180px;
+  border: 10px solid green;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.home-container .container .products-box .products-st-right{
+  display: inline-block;
+  width: 60%;
+  height: 100%;
+  padding: 0 20px 20px 20px;
+  box-sizing: border-box;
+}
+
+.home-container .container .products-box .products-st-right .title{
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+
+/* USERS statistics */
+.home-container .container .users-box{
+  width: 70%;
+  height: 270px;
+  margin: 0 auto;
+  margin-top: 20px;
+  border: 1px solid rgb(187, 187, 187);
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  background-color: #ffffff;
+  border-radius: 8px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-bottom: 30px;
+}
+
+.home-container .container .users-box .users-st-left{
+  display: inline-block;
+  width: 40%;
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.home-container .container .users-box .users-st-left .quantity-box{
+  width: 180px;
+  height: 180px;
+  border: 10px solid blue;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.home-container .container .users-box .users-st-right{
+  display: inline-block;
+  width: 60%;
+  height: 100%;
+  padding: 0 20px 20px 20px;
+  box-sizing: border-box;
+}
+
+.home-container .container .users-box .users-st-right .title{
+  font-size: 16px;
+  font-weight: 600;
+  text-align: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
