@@ -40,7 +40,10 @@
         <form 
           onsubmit="return validateForm()" 
           method="POST" 
-          action="<%=product.productName ? "/admin/product/update" :  "/admin/product/create" %>"
+          enctype="multipart/form-data"
+          action="<%=product.productName 
+                      ? "/admin/product/update" 
+                      :  "/admin/product/create" %>"
         >
           <div class="row ">
             
@@ -398,7 +401,7 @@
                   name="productImages"
                   class="image-one"
                   hidden
-                  required
+                  <%=product?.productImages[0] ? "" : "required" %>
                   onchange="previewFileHandler(this, 1)"
                 />
               </div>
