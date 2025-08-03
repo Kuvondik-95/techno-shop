@@ -4,7 +4,7 @@
 
 <body>
   <div class="home-container">
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark ">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="navbar-div collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item active">
@@ -49,9 +49,7 @@
           </div>
 
           <div class="products-st-right">
-            <div class="title">
-              This is all products information! 
-            </div>
+            <div class="title">Products information!</div>
             <div id="main-1" style="width: 100%; height:230px;"></div>
           </div>
         </div>
@@ -93,36 +91,47 @@
     };
 
     /* PRODUCTS CHART */
-    var myChart1 = echarts.init(document.getElementById('main-1'));
+    var chartDom = document.getElementById('main-1');
+    var myChart = echarts.init(chartDom);
+    var option;
 
-    const option = {
+    option = {
+      tooltip: {
+        trigger: 'item'
+      },
+      // legend: {
+      //   orient: 'vertical',
+      //   left: 'right'
+      // },
       series: [
         {
-          name: 'Products',
           type: 'pie',
+          radius: '70%',
           color: [
-            '#14e822ff',
-            '#759aa0',
-            '#dd6b66',
-          ],
+              '#14e822ff',
+              '#759aa0',
+              '#dd6b66',
+            ],
           data: [
-            {
-              value: obj.process,
-              name: 'PROCESS'
-            },
-            {
-              value: obj.pause,
-              name: 'PAUSE'
-            },
-            {
-              value: obj.delete,
-              name: 'DELETE'
+            { value: obj.process, name: 'PROCESS' },
+            { value: obj.pause, name: 'PAUSE' },
+            { value: obj.delete, name: 'DELETE' },
+          ],
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
             }
-          ]
+          }
         }
       ]
     };
-    myChart1.setOption(option);
+
+    option && myChart.setOption(option);
+
+
+
 
 
 
@@ -133,36 +142,51 @@
     };
 
     /* USERS CHART */
-    var myChart2 = echarts.init(document.getElementById('main-2'));
+    var chartDom2 = document.getElementById('main-2');
+    var myChart2 = echarts.init(chartDom2);
+    var option2;
 
-    const option2 = {
+    option2 = {
+      tooltip: {
+        trigger: 'item'
+      },
+      // legend: {
+      //   orient: 'vertical',
+      //   left: 'right'
+      // },
       series: [
         {
           type: 'pie',
-          name: 'Users',
+          radius: '70%',
           color: [
-            '#143be8ff',
-            '#759aa0',
-            '#dd6b66',
-          ],
+              '#143be8ff',
+              '#759aa0',
+              '#dd6b66',
+            ],
           data: [
-            {
-              value: objUser.active,
-              name: 'ACTIVE'
-            },
-            {
-              value: objUser.block,
-              name: 'BLOCK'
-            },
-            {
-              value: objUser.delete,
-              name: 'DELETE'
+            { value: objUser.active, name: 'ACTIVE' },
+            { value: objUser.block, name: 'BLOCK' },
+            { value: objUser.delete, name: 'DELETE' },
+          ],
+          emphasis: {
+            itemStyle: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
             }
-          ]
+          }
         }
       ]
     };
-    myChart2.setOption(option2);
+
+    option2 && myChart2.setOption(option2);
+
+
+
+
+
+
+
 
 
 

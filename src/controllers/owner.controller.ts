@@ -73,7 +73,7 @@ ownerController.processLogin = async (req: AdminRequest, res: Response) => {
     // TODO: SESSION AUTHENTICATION
     req.session.member = result;
     req.session.save(function(){
-      res.redirect("/admin/product/all");
+      res.redirect("/admin/home");
     });
 
   }catch(err){

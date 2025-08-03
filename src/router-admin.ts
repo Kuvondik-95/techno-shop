@@ -54,6 +54,11 @@ routerAdmin.post(
     ownerController.verifyOwner, //AUTHORIZATION MIDDLEWARE
     productController.updateChosenProduct);
 
+routerAdmin.post(
+    '/product/status/:id', 
+    ownerController.verifyOwner, //AUTHORIZATION MIDDLEWARE
+    productController.updateProductStatus);
+
 
 
 

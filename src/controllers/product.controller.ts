@@ -117,16 +117,36 @@ productController.createNewProduct = async (req:AdminRequest, res:Response) => {
   }
 }
 
-productController.updateChosenProduct = async (req:Request, res:Response) => {
+productController.updateChosenProduct = async (req:AdminRequest, res:Response) => {
   try{
     console.log("updateChosenProduct");
     const id = req.params.id;
+
+    console.log("id:", id);
+    console.log("req.body:", req.body);
     
     const result = await productService.updateChosenProduct(id, req.body);
+    console.log("result:", result);
+
+    res.status(HttpCode.OK).json({data: result});
+    // res.send(`<script> alert("Successfully updated"); window.location.replace('/admin/product/all') </script>`);
+  }catch(err){
+    console.log("Error, updateChosenProduct:", err);
+    if(err instanceof Errors) res.status(err.code).json(err);
+    else res.status(Errors.standard.code).json(Errors.standard);
+  }
+}
+
+productController.updateProductStatus = async (req:AdminRequest, res:Response) => {
+  try{
+    console.log("updateProductStatus");
+    const id = req.params.id;
+    
+    const result = await productService.updateProductStatus(id, req.body);
 
     res.status(HttpCode.OK).json({data: result});
   }catch(err){
-    console.log("Error, updateChosenProduct:", err);
+    console.log("Error, updateProductStatus:", err);
     if(err instanceof Errors) res.status(err.code).json(err);
     else res.status(Errors.standard.code).json(Errors.standard);
   }

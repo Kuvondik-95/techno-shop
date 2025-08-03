@@ -45,6 +45,10 @@
   justify-content: center;
   align-items: center;
 }
+.home-container .container .products-box .products-st-left .quantity-box:hover {
+  transform: scale(1.05);
+  transition: ease-in-out all 200ms;
+}
 
 
 
@@ -60,8 +64,8 @@
   font-size: 16px;
   font-weight: 600;
   text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 15px;
+  margin-bottom: 0px;
 }
 
 
@@ -101,6 +105,11 @@
   align-items: center;
 }
 
+.home-container .container .users-box .users-st-left .quantity-box:hover{
+  transform: scale(1.05);
+  transition: ease-in-out all 200ms;
+}
+
 
 
 .home-container .container .users-box .users-st-right{
@@ -115,6 +124,6 @@
   font-size: 16px;
   font-weight: 600;
   text-align: center;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  margin-top: 15px;
+  margin-bottom: 0 !important;
 }
