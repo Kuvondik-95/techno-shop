@@ -125,7 +125,7 @@ async function UpdateProduct(productId){
     console.log(result);
     if(result.data){
       alert("Product updated!");
-      window.location.assign("http://localhost:4003/admin/product/all");
+      window.location.assign("/admin/product/all");
     }else{
       alert("Product update failed!");  
     }

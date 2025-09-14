@@ -7,13 +7,13 @@
         <div class="navbar-div collapse navbar-collapse" id="navbarNav">
           <ul class="navbar-nav">
             <li class="nav-item ">
-              <a class="nav-link" href="http://localhost:4003/admin/home">Home</a>
+              <a class="nav-link" href="/admin/home">Home</a>
             </li>
             <li class="nav-item active">
-              <a class="nav-link" href="http://localhost:4003/admin/product/all">Products</a>
+              <a class="nav-link" href="/admin/product/all">Products</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost:4003/admin/user/all">Users</a>
+              <a class="nav-link" href="/admin/user/all">Users</a>
             </li>
           </ul>
           <div 
@@ -22,7 +22,7 @@
           >
             <a 
               class="nav-link btn btn-sm btn-outline-success" 
-              href="http://localhost:4003/admin/logout"
+              href="/admin/logout"
             >
               Logout
             </a>
@@ -390,7 +390,7 @@
             <div class="col-md-2 mr-1 img-column">
               <div class="upload-img-box">
                 <img 
-                  src="<%=product?.productImages[0] ? "http://localhost:4003/"+product.productImages[0] : "/img/upload2.png" %>" 
+                  src="<%=product?.productImages[0] ? "/"+product.productImages[0] : "/img/upload2.png" %>" 
                   class="1" 
                   onclick="uploadPhotoInput('image-one')" 
                   id="image-section-1" 
@@ -410,7 +410,7 @@
             <div class="col-md-2 mr-1 img-column">
               <div class="upload-img-box">
                 <img 
-                  src="<%=product?.productImages[1] ? "http://localhost:4003/"+product.productImages[1] : "/img/upload2.png" %>" 
+                  src="<%=product?.productImages[1] ? "/"+product.productImages[1] : "/img/upload2.png" %>" 
                   class="2" 
                   onclick="uploadPhotoInput('image-two')" 
                   id="image-section-2" 
@@ -429,7 +429,7 @@
             <div class="col-md-2 mr-1 img-column">
               <div class="upload-img-box">
                 <img 
-                  src="<%=product?.productImages[2] ? "http://localhost:4003/"+product.productImages[2] : "/img/upload2.png" %>" 
+                  src="<%=product?.productImages[2] ? "/"+product.productImages[2] : "/img/upload2.png" %>" 
                   class="3" 
                   onclick="uploadPhotoInput('image-three')" 
                   id="image-section-3" 
@@ -448,7 +448,7 @@
             <div class="col-md-2 mr-1 img-column">
               <div class="upload-img-box">
                 <img 
-                  src="<%=product?.productImages[3] ? "http://localhost:4003/"+product.productImages[3] : "/img/upload2.png" %>" 
+                  src="<%=product?.productImages[3] ? "/"+product.productImages[3] : "/img/upload2.png" %>" 
                   class="4" 
                   onclick="uploadPhotoInput('image-four')" 
                   id="image-section-4" 
@@ -466,7 +466,7 @@
             <div class="col-md-2 mr-1 img-column">
               <div class="upload-img-box">
                 <img 
-                  src="<%=product?.productImages[4] ? "http://localhost:4003/"+product.productImages[4] : "/img/upload2.png" %>" 
+                  src="<%=product?.productImages[4] ? "/"+product.productImages[4] : "/img/upload2.png" %>" 
                   class="5" 
                   onclick="uploadPhotoInput('image-five')" 
                   id="image-section-5" 
